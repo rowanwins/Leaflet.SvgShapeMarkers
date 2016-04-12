@@ -19,15 +19,34 @@
 			center: [51.505, -0.09],
 			zoom: 13
 		});
-		var tilelayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-			maxZoom: 18
+
+		var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+			subdomains: 'abcd',
+			maxZoom: 19
 		}).addTo(map);
 
 		var square = L.shapeMarker([51.505, -0.09], {
 			fillColor: "black",
 			color: "black",
 			shape: "diamond",
+			size: 20
+		}).addTo(map);
+
+
+		var triangle = L.shapeMarker([51.51, -0.08], {
+			fillColor: "red",
+			fillOpacity: 0.9,
+			color: "#cccccc",
+			shape: "triangle",
+			size: 10
+		}).addTo(map);
+
+		var square = L.shapeMarker([51.50, -0.06], {
+			fillColor: "blue",
+			fillOpacity: 0.1,
+			color: "red",
+			shape: "square",
 			size: 20
 		}).addTo(map);
 

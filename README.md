@@ -1,5 +1,5 @@
 # Leaflet.SvgShapeMarkers
-Additional marker types based on for leaflet.js 
+Additional marker types based on for leaflet.js. Check out the [demo](http://rowanwins.github.io/Leaflet.SvgShapeMarkers/example/).
 
 ### Usage
 **Step 1.** Include the required js in your document. 
@@ -25,7 +25,8 @@ You can pass a number of options to the plugin to control various settings.
 | shape | string | "triangle" | A valid shape, one of "triangle" or "square" or "diamond" |
 | size | number | 20 | The size of the svg marker in pixels |
 
-L.shapeMarker also extends the path class so any options that you can pass (such as color or fillOpacity) are also valid.
+L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#path) so any options that you can pass (such as color or fillOpacity) are also valid.
+
 ``` js
 	var diamond = L.shapeMarker([51.505, -0.09], {
 		fillColor: "#cccccc",
