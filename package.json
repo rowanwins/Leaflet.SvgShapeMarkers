@@ -6,8 +6,8 @@
   "scripts": {
     "build": "node build.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Rowan Winsemius",
+  "license": "MIT",
   "devDependencies": {
     "concatenate-files": "^0.1.1",
     "minifier": "^0.7.1"
