@@ -1,5 +1,5 @@
 # Leaflet.SvgShapeMarkers
-Additional marker types based on for leaflet.js. Check out the [demo](http://rowanwins.github.io/Leaflet.SvgShapeMarkers/example/).
+Additional SVG marker types for leaflet.js such as triangle, diamond and square. Check out the [demo](http://rowanwins.github.io/Leaflet.SvgShapeMarkers/example/).
 
 ### Usage
 **Step 1.** Include the required js in your document. 
