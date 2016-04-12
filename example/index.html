@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet SVG markers</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2.rc.2/leaflet.css"/>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2.rc.2/leaflet.js"></script>
+
+	<script type="text/javascript" src="../dist/leaflet-svg-markers.min.js"></script>
+
+</head>
+<body>
+	<div id="map" style="width: 800px; height: 600px; border: 1px solid #ccc"></div>
+
+	<script>
+
+		var map = L.map('map', {
+			center: [51.505, -0.09],
+			zoom: 13
+		});
+		var tilelayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			maxZoom: 18
+		}).addTo(map);
+
+		var square = L.shapeMarker([51.505, -0.09], {
+			fillColor: "black",
+			color: "black",
+			shape: "diamond",
+			size: 20
+		}).addTo(map);
+
+		var marker = L.marker([51.505, -0.09]).addTo(map);
+
+	</script>
+</body>
+</html>
