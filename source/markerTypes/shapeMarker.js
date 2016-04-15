@@ -1,49 +1,40 @@
 L.ShapeMarker = L.Path.extend({
 	options: {
 		fill: true,
-		
 		shape: 'triangle',
-		size: 10
+		radius: 10
 	},
 
 	initialize: function (latlng, options) {
 		L.setOptions(this, options);
 		this._latlng = L.latLng(latlng);
 		this.size = this.options.size;
-		this.shape = this.options.shape;
+		this._radius = this.options.radius;
 	},
 
-	// @method setLatLng(latLng: LatLng): this
-	// Sets the position of a diamond marker to a new location.
 	setLatLng: function (latlng) {
 		this._latlng = L.latLng(latlng);
 		this.redraw();
 		return this.fire('move', {latlng: this._latlng});
 	},
 
-	// @method getLatLng(): LatLng
-	// Returns the current geographical position of the diamond marker
 	getLatLng: function () {
 		return this._latlng;
 	},
 
-	// @method setRadius(radius: Number): this
-	// Sets the radius of a diamond marker. Units are in pixels.
-	setSize: function (radius) {
-		this.options.size = this._size = size;
+	setRadius: function (radius) {
+		this.options.radius = this._radius = radius;
 		return this.redraw();
 	},
 
-	// @method getRadius(): Number
-	// Returns the current radius of the diamond
-	getSize: function () {
-		return this._size;
+	getRadius: function () {
+		return this._radius;
 	},
 
 	setStyle : function (options) {
-		var size = options && options.size || this._size;
+		var radius = options && options.radius || this._radius;
 		L.Path.prototype.setStyle.call(this, options);
-		this.setSize(size);
+		this.setRadius(radius);
 		return this;
 	},
 
@@ -53,8 +44,8 @@ L.ShapeMarker = L.Path.extend({
 	},
 
 	_updateBounds: function () {
-		var r = this._size,
-		    r2 = this._sizeY || r,
+		var r = this._radius,
+		    r2 = this._radiusY || r,
 		    w = this._clickTolerance(),
 		    p = [r + w, r2 + w];
 		this._pxBounds = new L.Bounds(this._point.subtract(p), this._point.add(p));
@@ -81,3 +72,14 @@ L.ShapeMarker = L.Path.extend({
 L.shapeMarker = function (latlng, options) {
 	return new L.ShapeMarker(latlng, options);
 };
+
+// var PointToGeoJSON = {
+// 	toGeoJSON: function () {
+// 		return L.GeoJSON.getFeature(this, {
+// 			type: 'Point',
+// 			coordinates: L.GeoJSON.latLngToCoords(this.getLatLng())
+// 		});
+// 	}
+// };
+
+// L.ShapeMarker.include(PointToGeoJSON);
