@@ -23,6 +23,7 @@ You can pass a number of options to the plugin to control various settings.
 | Option        | Type         | Default      | Description   |
 | ------------- |--------------|--------------|---------------|
 | shape | string | "triangle" | A valid shape, one of "triangle" or "square" or "diamond" or "x"|
+| radius | number | 20 | The size of the svg marker in pixels |
 
 L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#path) so any options that you can pass (such as color or fillOpacity) are also valid.
 
@@ -34,6 +35,17 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 		radius: 200
 	}).addTo(map);
 ```
+
+### Additional methods
+| Method        | Returns         | Description      | 
+| ------------- |--------------|--------------|---------------|
+| toGeoJSON | Object | 	Returns a GeoJSON representation of the marker (as a GeoJSON Point Feature).|
+| setLatLng | this | Sets the position of a marker to a new location.|
+| getLatLng | LatLng | Returns the current geographical position of the marker.|
+| setStyle | this | Changes the appearance of a Path based on the options in the Path options object.|
+| getRadius | this | Returns the current radius of the marker.|
+| setRadius | this | Sets the radius of a marker. Units are in pixels.|
+
 
 ### Acknowledgements
 Huge hats off go to [mourner](https://github.com/mourner) and all the [contributors](https://github.com/Leaflet/Leaflet/graphs/contributors) to the leaflet.js project, it's an amazing piece of open source software!

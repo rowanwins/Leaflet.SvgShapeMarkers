@@ -8,7 +8,6 @@ L.ShapeMarker = L.Path.extend({
 	initialize: function (latlng, options) {
 		L.setOptions(this, options);
 		this._latlng = L.latLng(latlng);
-		this.size = this.options.size;
 		this._radius = this.options.radius;
 	},
 

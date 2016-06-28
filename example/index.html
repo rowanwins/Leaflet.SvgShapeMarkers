@@ -7,15 +7,15 @@
 
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet-src.js"></script>
 
-	<script type="text/javascript" src="../source/SVG.js"></script>
-	<script type="text/javascript" src="../source/markerTypes/shapeMarker.js"></script>
+	<script type="text/javascript" src="../dist/leaflet-svg-markers.min.js"></script>
 
 	<script type="text/javascript" src="./data.js"></script>
 
 </head>
 <body>
 	<div id="map" style="width: 800px; height: 600px; border: 1px solid #ccc"></div>
-
+	<br><br>
+	<button onclick="changeXRadius()">Change radius of x marker</button>
 	<script>
 
 		var map = L.map('map', {
@@ -54,15 +54,18 @@
 			radius: 10
 		}).addTo(map);
 
-		var square = L.shapeMarker([51.50, -0.06], {
+		var x = L.shapeMarker([51.50, -0.06], {
 			fillOpacity: 0.1,
 			color: "red",
 			shape: "x",
-			radius: 200
+			radius: 100		
 		}).addTo(map);
 
 		var marker = L.marker([51.505, -0.09]).addTo(map);
-
+		
+		function changeXRadius(){
+			x.setRadius(Math.floor(Math.random() * 100) + 1 )
+		}
 	</script>
 </body>
 </html>
