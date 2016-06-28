@@ -3,11 +3,14 @@
 <head>
 	<title>Leaflet SVG markers</title>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2.rc.2/leaflet.css"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet.css"/>
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2.rc.2/leaflet.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet-src.js"></script>
 
-	<script type="text/javascript" src="../dist/leaflet-svg-markers.min.js"></script>
+	<script type="text/javascript" src="../source/SVG.js"></script>
+	<script type="text/javascript" src="../source/markerTypes/shapeMarker.js"></script>
+
+	<script type="text/javascript" src="./data.js"></script>
 
 </head>
 <body>
@@ -17,7 +20,7 @@
 
 		var map = L.map('map', {
 			center: [51.505, -0.09],
-			zoom: 13
+			zoom: 1
 		});
 
 		var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
@@ -26,7 +29,16 @@
 			maxZoom: 19
 		}).addTo(map);
 
-		var square = L.shapeMarker([51.505, -0.09], {
+
+		var myLayer = L.geoJson(sampleGeoJSON, {
+			pointToLayer: function (feature, latlng) {
+				return L.shapeMarker(latlng, {
+					shape: "square"
+				})
+			}
+		}). addTo(map);
+
+		var square = L.shapeMarker([-20, 40.06], {
 			fillColor: "black",
 			color: "black",
 			shape: "diamond",
@@ -34,7 +46,7 @@
 		}).addTo(map);
 
 
-		var triangle = L.shapeMarker([51.51, -0.08], {
+		var triangle = L.shapeMarker([51.51, -100], {
 			fillColor: "red",
 			fillOpacity: 0.9,
 			color: "#cccccc",
