@@ -13,7 +13,7 @@ Additional SVG marker types for leaflet.js such as triangle, diamond and square.
 ``` js
 	var square = L.shapeMarker([51.505, -0.09], {
 		shape: "square",
-		size: 20
+		radius: 20
 	}).addTo(map);
 ```
 
@@ -22,8 +22,7 @@ You can pass a number of options to the plugin to control various settings.
 
 | Option        | Type         | Default      | Description   |
 | ------------- |--------------|--------------|---------------|
-| shape | string | "triangle" | A valid shape, one of "triangle" or "square" or "diamond" |
-| size | number | 20 | The size of the svg marker in pixels |
+| shape | string | "triangle" | A valid shape, one of "triangle" or "square" or "diamond" or "x"|
 
 L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#path) so any options that you can pass (such as color or fillOpacity) are also valid.
 
@@ -32,7 +31,7 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 		fillColor: "#cccccc",
 		color: "black",
 		shape: "diamond",
-		size: 20
+		radius: 200
 	}).addTo(map);
 ```
 

@@ -42,7 +42,7 @@
 			fillColor: "black",
 			color: "black",
 			shape: "diamond",
-			size: 20
+			radius: 20
 		}).addTo(map);
 
 
@@ -51,15 +51,14 @@
 			fillOpacity: 0.9,
 			color: "#cccccc",
 			shape: "triangle",
-			size: 10
+			radius: 10
 		}).addTo(map);
 
 		var square = L.shapeMarker([51.50, -0.06], {
-			fillColor: "blue",
 			fillOpacity: 0.1,
 			color: "red",
-			shape: "square",
-			size: 20
+			shape: "x",
+			radius: 200
 		}).addTo(map);
 
 		var marker = L.marker([51.505, -0.09]).addTo(map);

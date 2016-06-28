@@ -76,9 +76,9 @@ L.SVG.include({
 
 	_updateBounds: function () {
 		var r = this._radius,
-		    r2 = this._radiusY || r,
-		    w = this._clickTolerance(),
-		    p = [r + w, r2 + w];
+		r2 = this._radiusY || r,
+		w = this._clickTolerance(),
+		p = [r + w, r2 + w];
 		this._pxBounds = new L.Bounds(this._point.subtract(p), this._point.add(p));
 	},
 
@@ -94,7 +94,15 @@ L.SVG.include({
 
 	_empty: function () {
 		return this._size && !this._renderer._bounds.intersects(this._pxBounds);
+	},
+	
+	toGeoJSON: function () {
+		return L.GeoJSON.getFeature(this, {
+			type: 'Point',
+			coordinates: L.GeoJSON.latLngToCoords(this.getLatLng())
+		});
 	}
+
 });
 
 
@@ -104,13 +112,4 @@ L.shapeMarker = function (latlng, options) {
 	return new L.ShapeMarker(latlng, options);
 };
 
-// var PointToGeoJSON = {
-// 	toGeoJSON: function () {
-// 		return L.GeoJSON.getFeature(this, {
-// 			type: 'Point',
-// 			coordinates: L.GeoJSON.latLngToCoords(this.getLatLng())
-// 		});
-// 	}
-// };
 
-// L.ShapeMarker.include(PointToGeoJSON);
