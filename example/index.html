@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Leaflet SVG markers</title>
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet.css"/>
-
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet-src.js"></script>
-
-	<script type="text/javascript" src="../dist/leaflet-svg-markers.min.js"></script>
-
+	<title>Leaflet.SvgShapeMarkers</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<script type="text/javascript" src="../dist/leaflet-svg-shape-markers.min.js"></script>
 	<script type="text/javascript" src="./data.js"></script>
+	<style>
+		html {
+			background: #222222; 
+			padding: 40px 200px;
+			font-family: 'Arial';
+		}
+		h2,p {
+			color: white;
+		}
+		.changeRadiusButton{
+			padding:15px 30px; 
+			background-color: #47a230;
+			text-decoration: none;
+			font-weight: 900; 
+			color: white; 
+			text-transform:uppercase; 
+			transition: background-color .5s;
+			border:none;
+		}
+		.changeRadiusButton:hover {
+			background-color: #1d7806;
+			cursor: pointer;
+		}
+	</style>
 
 </head>
 <body>
-	<div id="map" style="width: 800px; height: 600px; border: 1px solid #ccc"></div>
+	<h2>Leaflet.SvgShapeMarkers</h2>
+	<div id="map" style="width: 100%; height: 400px;""></div>
 	<br><br>
-	<button onclick="changeXRadius()">Change radius of x marker</button>
+	<button onclick="changeXRadius()" class="changeRadiusButton">Change radius of x marker</button>
 	<script>
 
 		var map = L.map('map', {
@@ -60,8 +81,6 @@
 			shape: "x",
 			radius: 100		
 		}).addTo(map);
-
-		var marker = L.marker([51.505, -0.09]).addTo(map);
 		
 		function changeXRadius(){
 			x.setRadius(Math.floor(Math.random() * 100) + 1 )

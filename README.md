@@ -1,11 +1,14 @@
 # Leaflet.SvgShapeMarkers
 Additional SVG marker types for leaflet.js such as triangle, diamond and square. Check out the [demo](http://rowanwins.github.io/Leaflet.SvgShapeMarkers/example/).
 
+### Installing
+Either  downloading this repo or install from npm `npm install leaflet-svg-shape-markers`
+
 ### Usage
-**Step 1.** Include the required js in your document. 
+**Step 1.** Include the required js in your document 
 
 ```html
-   	<script src="extraSvgMarkers/dist/leaflet-svg-markers.min.js"></script>
+   	<script src="leaflet-svg-shape-markers/dist/leaflet-svg-shape-markers.min.js"></script>
 ```
 
 **Step 2.** Add a point to your map using the `shapeMarker` function
@@ -46,6 +49,9 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 | getRadius | this | Returns the current radius of the marker.|
 | setRadius | this | Sets the radius of a marker. Units are in pixels.|
 
+``` js
+	diamond.setRadius(10);
+```
 
 ### Acknowledgements
 Huge hats off go to [mourner](https://github.com/mourner) and all the [contributors](https://github.com/Leaflet/Leaflet/graphs/contributors) to the leaflet.js project, it's an amazing piece of open source software!
