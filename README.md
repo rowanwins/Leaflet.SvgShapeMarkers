@@ -40,9 +40,9 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 ```
 
 ### Additional methods
-| Method        | Returns         | Description      | 
-| ------------- |--------------|--------------|---------------|
-| toGeoJSON | Object | 	Returns a GeoJSON representation of the marker (as a GeoJSON Point Feature).|
+| Method        | Returns      | Description  | 
+| ------------- |--------------|--------------|
+| toGeoJSON | Object | Returns a GeoJSON representation of the marker (as a GeoJSON Point Feature).|
 | setLatLng | this | Sets the position of a marker to a new location.|
 | getLatLng | LatLng | Returns the current geographical position of the marker.|
 | setStyle | this | Changes the appearance of a Path based on the options in the Path options object.|
