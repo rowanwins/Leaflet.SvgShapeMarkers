@@ -44,9 +44,9 @@ L.ShapeMarker = L.Path.extend({
 
 	_updateBounds: function () {
 		var r = this._radius,
-		r2 = this._radiusY || r,
-		w = this._clickTolerance(),
-		p = [r + w, r2 + w];
+			r2 = this._radiusY || r,
+			w = this._clickTolerance(),
+			p = [r + w, r2 + w];
 		this._pxBounds = new L.Bounds(this._point.subtract(p), this._point.add(p));
 	},
 
@@ -63,7 +63,7 @@ L.ShapeMarker = L.Path.extend({
 	_empty: function () {
 		return this._size && !this._renderer._bounds.intersects(this._pxBounds);
 	},
-	
+
 	toGeoJSON: function () {
 		return L.GeoJSON.getFeature(this, {
 			type: 'Point',
@@ -76,8 +76,6 @@ L.ShapeMarker = L.Path.extend({
 
 // @factory L.shapeMarker(latlng: LatLng, options? ShapeMarker options)
 //
-L.shapeMarker = function (latlng, options) {
+L.shapeMarker = function shapeMarker(latlng, options) {
 	return new L.ShapeMarker(latlng, options);
 };
-
-
