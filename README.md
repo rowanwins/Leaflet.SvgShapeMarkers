@@ -39,6 +39,16 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 	}).addTo(map);
 ```
 
+### Available shapes
+
+* diamond
+* square
+* triangle (= triangle-up)
+* triangle-up
+* triangle-down
+* circle
+* x
+
 ### Additional methods
 | Method        | Returns      | Description  | 
 | ------------- |--------------|--------------|
