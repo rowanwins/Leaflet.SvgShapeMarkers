@@ -1,35 +1,40 @@
 L.SVG.include({
-	_updateShape: function (layer) {
-		
+	_updateShape: function _updateShape(layer) {
+
 		var p = layer._point;
 		var s = layer._radius;
 		var shape = layer.options.shape;
 
 		if(shape === "diamond"){
-			var d = "M "+ (p.x-s)+ " "+ (p.y)+ ", L " + (p.x) +" "+ (p.y-s)+ ", L"  + (p.x+s) + " " + (p.y)+ ", L"  + (p.x) + " " + (p.y+s) +", L"  + (p.x-s) + " " + (p.y);
+			var d = "M"+ (p.x-s)+ " "+ (p.y)+ " L " + (p.x) +" "+ (p.y-s)+ " L"  + (p.x+s) + " " + (p.y)+ " L"  + (p.x) + " " + (p.y+s) +" L"  + (p.x-s) + " " + (p.y);
 			this._setPath(layer, d);
 		}
 		if(shape === "square"){
-			var d = "M "+ (p.x-s)+ " "+ (p.y-s)+ ", L " + (p.x+s) +" "+ (p.y-s)+ ", L"  + (p.x+s) + " " + (p.y+s)+ ", L"  + (p.x-s) + " " + (p.y+s) +", L"  + (p.x-s) + " " + (p.y-s);
+			var d = "M"+ (p.x-s)+ " "+ (p.y-s)+ " L " + (p.x+s) +" "+ (p.y-s)+ " L"  + (p.x+s) + " " + (p.y+s)+ " L"  + (p.x-s) + " " + (p.y+s) +" L"  + (p.x-s) + " " + (p.y-s);
 			this._setPath(layer, d);
 		}
-		if(shape === "triangle"){
-			var d = "M"+ (p.x-s)+ " "+ (p.y+s)+ " L" + (p.x) +" "+ (p.y-s)+ " L" + (p.x+s) + " " + (p.y+s)+  " Z";
+		if (shape === "triangle" || shape === "triangle-up") {
+			var d = "M" + (p.x - s) + " " + (p.y + s) + " L" + (p.x) + " " + (p.y - s) + " L" + (p.x + s) + " " + (p.y + s) + " Z";
 			this._setPath(layer, d);
 		}
-		if(shape === "circle"){
+		if (shape === "triangle-down") {
+			var d = "M" + (p.x - s) + " " + (p.y - s) + " L" + (p.x) + " " + (p.y + s) + " L" + (p.x + s) + " " + (p.y - s) + " Z";
+			this._setPath(layer, d);
+		}
+		if (shape === "circle") {
 			this._updateCircle(layer)
 		}
-		if(shape === "x"){
-			var s = s/2
+		if (shape === "x") {
+			s = s / 2;
 			var d = 'M' + (p.x + s) + ',' + (p.y + s) +
-			'L' + (p.x - s) + ',' + (p.y - s) +
-			'M' + (p.x - s) + ',' + (p.y + s) +
-			'L' + (p.x + s) + ',' + (p.y - s);
+				'L' + (p.x - s) + ',' + (p.y - s) +
+				'M' + (p.x - s) + ',' + (p.y + s) +
+				'L' + (p.x + s) + ',' + (p.y - s);
 			this._setPath(layer, d);
 		}
 	}
-});L.ShapeMarker = L.Path.extend({
+});
+;L.ShapeMarker = L.Path.extend({
 	options: {
 		fill: true,
 		shape: 'triangle',
@@ -75,9 +80,9 @@ L.SVG.include({
 
 	_updateBounds: function () {
 		var r = this._radius,
-		r2 = this._radiusY || r,
-		w = this._clickTolerance(),
-		p = [r + w, r2 + w];
+			r2 = this._radiusY || r,
+			w = this._clickTolerance(),
+			p = [r + w, r2 + w];
 		this._pxBounds = new L.Bounds(this._point.subtract(p), this._point.add(p));
 	},
 
@@ -94,7 +99,7 @@ L.SVG.include({
 	_empty: function () {
 		return this._size && !this._renderer._bounds.intersects(this._pxBounds);
 	},
-	
+
 	toGeoJSON: function () {
 		return L.GeoJSON.getFeature(this, {
 			type: 'Point',
@@ -107,8 +112,6 @@ L.SVG.include({
 
 // @factory L.shapeMarker(latlng: LatLng, options? ShapeMarker options)
 //
-L.shapeMarker = function (latlng, options) {
+L.shapeMarker = function shapeMarker(latlng, options) {
 	return new L.ShapeMarker(latlng, options);
 };
-
-
