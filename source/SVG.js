@@ -5,12 +5,12 @@ L.SVG.include({
 		var s = layer._radius;
 		var shape = layer.options.shape;
 
-		if (shape === "diamond") {
-			var d = "M " + (p.x - s) + " " + (p.y) + ", L " + (p.x) + " " + (p.y - s) + ", L" + (p.x + s) + " " + (p.y) + ", L" + (p.x) + " " + (p.y + s) + ", L" + (p.x - s) + " " + (p.y);
+		if(shape === "diamond"){
+			var d = "M"+ (p.x-s)+ " "+ (p.y)+ " L " + (p.x) +" "+ (p.y-s)+ " L"  + (p.x+s) + " " + (p.y)+ " L"  + (p.x) + " " + (p.y+s) +" L"  + (p.x-s) + " " + (p.y);
 			this._setPath(layer, d);
 		}
-		if (shape === "square") {
-			var d = "M " + (p.x - s) + " " + (p.y - s) + ", L " + (p.x + s) + " " + (p.y - s) + ", L" + (p.x + s) + " " + (p.y + s) + ", L" + (p.x - s) + " " + (p.y + s) + ", L" + (p.x - s) + " " + (p.y - s);
+		if(shape === "square"){
+			var d = "M"+ (p.x-s)+ " "+ (p.y-s)+ " L " + (p.x+s) +" "+ (p.y-s)+ " L"  + (p.x+s) + " " + (p.y+s)+ " L"  + (p.x-s) + " " + (p.y+s) +" L"  + (p.x-s) + " " + (p.y-s);
 			this._setPath(layer, d);
 		}
 		if (shape === "triangle" || shape === "triangle-up") {
