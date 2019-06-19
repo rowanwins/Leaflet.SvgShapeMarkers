@@ -1,117 +1,98 @@
-L.SVG.include({
-	_updateShape: function _updateShape(layer) {
-
-		var p = layer._point;
-		var s = layer._radius;
-		var shape = layer.options.shape;
-
-		if(shape === "diamond"){
-			var d = "M"+ (p.x-s)+ " "+ (p.y)+ " L " + (p.x) +" "+ (p.y-s)+ " L"  + (p.x+s) + " " + (p.y)+ " L"  + (p.x) + " " + (p.y+s) +" L"  + (p.x-s) + " " + (p.y);
-			this._setPath(layer, d);
-		}
-		if(shape === "square"){
-			var d = "M"+ (p.x-s)+ " "+ (p.y-s)+ " L " + (p.x+s) +" "+ (p.y-s)+ " L"  + (p.x+s) + " " + (p.y+s)+ " L"  + (p.x-s) + " " + (p.y+s) +" L"  + (p.x-s) + " " + (p.y-s);
-			this._setPath(layer, d);
-		}
-		if (shape === "triangle" || shape === "triangle-up") {
-			var d = "M" + (p.x - s) + " " + (p.y + s) + " L" + (p.x) + " " + (p.y - s) + " L" + (p.x + s) + " " + (p.y + s) + " Z";
-			this._setPath(layer, d);
-		}
-		if (shape === "triangle-down") {
-			var d = "M" + (p.x - s) + " " + (p.y - s) + " L" + (p.x) + " " + (p.y + s) + " L" + (p.x + s) + " " + (p.y - s) + " Z";
-			this._setPath(layer, d);
-		}
-		if (shape === "circle") {
-			this._updateCircle(layer)
-		}
-		if (shape === "x") {
-			s = s / 2;
-			var d = 'M' + (p.x + s) + ',' + (p.y + s) +
-				'L' + (p.x - s) + ',' + (p.y - s) +
-				'M' + (p.x - s) + ',' + (p.y + s) +
-				'L' + (p.x + s) + ',' + (p.y - s);
-			this._setPath(layer, d);
-		}
-	}
-});
-;L.ShapeMarker = L.Path.extend({
+L.DivIcon.SVGShape = L.DivIcon.extend({
 	options: {
-		fill: true,
-		shape: 'triangle',
-		radius: 10
+		"className": 'svg-shape',
+		"shape": 'circle',
+		"anchor": null,
+		"fillColor": '#ce0404',
+		"fillOpacity": 1,
+		"strokeColor": '#000000',
+		"strokeOpacity": 0.8,
+		"strokeWidth": 1,
+		"strokeLinecap": 'square',
+		"strokeLinejoin": 'miter',
+		"size": 20,
+		"iconSize": null,
 	},
+	initialize: function(options) {
+		options = L.Util.setOptions(this, options);
+		if (!options.iconSize) {
+			options.iconSize = L.point(options.size, options.size);
+		}
+		
+		var style = "width:" + this.options.iconSize.x + "px; height:" + this.options.iconSize.y + "px;";		
+		var anchor = L.point(Number(this.options.iconSize.x)/2, Number(this.options.iconSize.x)/2);
+		var x = Number(anchor.x);
+		var y = Number(anchor.y);
+		
+		switch(this.options.shape) {
+			case "circle":
+				var r = Number(this.options.size/2)-1;
+				var circle = 'cx="' + x + '" cy="' + y + '" r="' + r + '"';
+				var shp = this._drawShape(circle);
+			break;
+			case "diamond":
+				var s = Number(this.options.size/2);
+				var diamond = "M"+ (x-s)+ " "+ (y)+ " L " + (x) +" "+ (y-s)+ " L"  + (x+s) + " " + (y)+ " L"  + (x) + " " + (y+s) +" L"  + (x-s) + " " + (y);
+				var shp = this._drawShape(diamond);
+			break;
+			case "square":
+				var s = Number(this.options.size/2)-1.5;
+				var square = "M"+ (x-s)+ " "+ (y-s)+ " L " + (x+s) +" "+ (y-s)+ " L"  + (x+s) + " " + (y+s)+ " L"  + (x-s) + " " + (y+s) +" L"  + (x-s) + " " + (y-s);
+				var shp = this._drawShape(square);
+			break;
+			case "triangle-up":
+			case "triangle":
+				var s = Number(this.options.size/2)-1;
+				var triangleUp = "M" + (x-s) + " " + (y+s) + " L" + (x) + " " + (y-s) + " L" + (x+s) + " " + (y+s) + " Z";
+				var shp = this._drawShape(triangleUp);
+			break;
+			case "triangle-down":
+				var s = Number(this.options.size/2)-1;
+				var triangleDown = "M" + (x-s) + " " + (y-s) + " L" + (x) + " " + (y+s) + " L" + (x+s) + " " + (y-s) + " Z";
+				var shp = this._drawShape(triangleDown);
+			break;
+			case "x":
+				var s = Number(this.options.size/2)-1;
+				var theX = 'M' + (x+s) + ',' + (y+s) + 'L' + (x-s) + ',' + (y-s) +	'M' + (x-s) + ',' + (y+s) +	'L' + (x+s) + ',' + (y-s);
+				var shp = this._drawShape(theX);
+			break;
+		}
 
-	initialize: function (latlng, options) {
-		L.setOptions(this, options);
-		this._latlng = L.latLng(latlng);
-		this._radius = this.options.radius;
+		options.html = '<svg style="' + style + '">' + shp + '</svg>';
 	},
-
-	setLatLng: function (latlng) {
-		this._latlng = L.latLng(latlng);
-		this.redraw();
-		return this.fire('move', {latlng: this._latlng});
-	},
-
-	getLatLng: function () {
-		return this._latlng;
-	},
-
-	setRadius: function (radius) {
-		this.options.radius = this._radius = radius;
-		return this.redraw();
-	},
-
-	getRadius: function () {
-		return this._radius;
-	},
-
-	setStyle : function (options) {
-		var radius = options && options.radius || this._radius;
-		L.Path.prototype.setStyle.call(this, options);
-		this.setRadius(radius);
-		return this;
-	},
-
-	_project: function () {
-		this._point = this._map.latLngToLayerPoint(this._latlng);
-		this._updateBounds();
-	},
-
-	_updateBounds: function () {
-		var r = this._radius,
-			r2 = this._radiusY || r,
-			w = this._clickTolerance(),
-			p = [r + w, r2 + w];
-		this._pxBounds = new L.Bounds(this._point.subtract(p), this._point.add(p));
-	},
-
-	_update: function () {
-		if (this._map) {
-			this._updatePath();
+	_drawShape: function(shp) {
+		var fill = this.options.fillColor;
+		var fillOpacity = this.options.fillOpacity;
+		var stroke = this.options.strokeColor;
+		var strokeOpacity = this.options.strokeOpacity;
+		var strokeWidth = this.options.strokeWidth;
+		var strokeLinecap = this.options.strokeLinecap;
+		var strokeLinejoin = this.options.strokeLinejoin;
+		
+		if (this.options.shape === "circle") {
+			return '<circle ' + shp + ' fill="' + fill + '" fill-opacity="' + fillOpacity + '" stroke="' + stroke + '" stroke-opacity="' + strokeOpacity + '" stroke-width="' + strokeWidth + '"/>';
+		} else {
+			return '<path d="' + shp + '" fill="' + fill + '" fill-opacity="' + fillOpacity + '" stroke="' + stroke + '" stroke-opacity="' + strokeOpacity + '" stroke-width="' + strokeWidth + '" stroke-linecap="' + strokeLinecap + '" stroke-linejoin="' + strokeLinejoin + '"/>';
 		}
 	},
-
-	_updatePath: function () {
-		this._renderer._updateShape(this);
-	},
-
-	_empty: function () {
-		return this._size && !this._renderer._bounds.intersects(this._pxBounds);
-	},
-
-	toGeoJSON: function () {
-		return L.GeoJSON.getFeature(this, {
-			type: 'Point',
-			coordinates: L.GeoJSON.latLngToCoords(this.getLatLng())
-		});
-	}
-
 });
 
+L.divIcon.svgShape = function(options) {
+	return new L.DivIcon.SVGShape(options);
+};
 
-// @factory L.shapeMarker(latlng: LatLng, options? ShapeMarker options)
-//
-L.shapeMarker = function shapeMarker(latlng, options) {
-	return new L.ShapeMarker(latlng, options);
+L.Marker.SimpleSVGMarker = L.Marker.extend({
+	options: {
+		shape: 'circle',
+		size: 12
+	},
+	initialize: function(latlng, options) {
+		options = L.Util.setOptions(this, options);
+		this._latlng = latlng;
+		options.icon = L.divIcon.svgShape(options);
+	},
+});
+
+L.simpleMarker = function(latlng, options) {
+	return new L.Marker.SimpleSVGMarker(latlng, options);
 };
