@@ -15,8 +15,8 @@ L.DivIcon.SVGShape = L.DivIcon.extend({
 	},
 	initialize: function(options) {
 		options = L.Util.setOptions(this, options);
-		if (!options.iconSize) {
-			options.iconSize = L.point(options.size, options.size);
+		if (!this.options.iconSize) {
+			this.options.iconSize = L.point(this.options.size, this.options.size);
 		}
 		
 		var style = "width:" + this.options.iconSize.x + "px; height:" + this.options.iconSize.y + "px;";		
