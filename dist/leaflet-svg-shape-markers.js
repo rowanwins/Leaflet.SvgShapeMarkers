@@ -6,7 +6,7 @@ L.SVG.include({
 		var shape = layer.options.shape;
 
 		if(shape === "diamond"){
-			var d = "M"+ (p.x-s)+ " "+ (p.y)+ " L " + (p.x) +" "+ (p.y-s)+ " L"  + (p.x+s) + " " + (p.y)+ " L"  + (p.x) + " " + (p.y+s) +" L"  + (p.x-s) + " " + (p.y);
+			var d = "M"+ (p.x-(Math.sqrt(2)*s))+ " "+ (p.y)+ " L " + (p.x) +" "+ (p.y-(Math.sqrt(2)*s))+ " L"  + (p.x+(Math.sqrt(2)*s)) + " " + (p.y)+ " L"  + (p.x) + " " + (p.y+(Math.sqrt(2)*s)) +" L"  + (p.x-(Math.sqrt(2)*s)) + " " + (p.y);
 			this._setPath(layer, d);
 		}
 		if(shape === "square"){
