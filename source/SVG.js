@@ -6,7 +6,7 @@ L.SVG.include({
 		var shape = layer.options.shape;
 
 		if(shape === "diamond"){
-			var d = "M"+ (p.x-s)+ " "+ (p.y)+ " L " + (p.x) +" "+ (p.y-s)+ " L"  + (p.x+s) + " " + (p.y)+ " L"  + (p.x) + " " + (p.y+s) +" L"  + (p.x-s) + " " + (p.y);
+			var d = "M"+ (p.x-(Math.sqrt(2)*s))+ " "+ (p.y)+ " L " + (p.x) +" "+ (p.y-(Math.sqrt(2)*s))+ " L"  + (p.x+(Math.sqrt(2)*s)) + " " + (p.y)+ " L"  + (p.x) + " " + (p.y+(Math.sqrt(2)*s)) +" L"  + (p.x-(Math.sqrt(2)*s)) + " " + (p.y);
 			this._setPath(layer, d);
 		}
 		if(shape === "square"){
@@ -14,11 +14,11 @@ L.SVG.include({
 			this._setPath(layer, d);
 		}
 		if (shape === "triangle" || shape === "triangle-up") {
-			var d = "M" + (p.x - s) + " " + (p.y + s) + " L" + (p.x) + " " + (p.y - s) + " L" + (p.x + s) + " " + (p.y + s) + " Z";
+			var d = "M" + (p.x - (13/10*s)) + " " + (p.y + (0.75*s)) + " L" + (p.x) + " " + (p.y - (1.5*s)) + " L" + (p.x + (13/10*s)) + " " + (p.y + (0.75*s)) + " Z";
 			this._setPath(layer, d);
 		}
 		if (shape === "triangle-down") {
-			var d = "M" + (p.x - s) + " " + (p.y - s) + " L" + (p.x) + " " + (p.y + s) + " L" + (p.x + s) + " " + (p.y - s) + " Z";
+			var d = "M" + (p.x - (13/10*s)) + " " + (p.y - (0.75*s)) + " L" + (p.x) + " " + (p.y + (1.5*s)) + " L" + (p.x + (13/10*s)) + " " + (p.y - (0.75*s)) + " Z";
 			this._setPath(layer, d);
 		}
 		if (shape === "circle") {
