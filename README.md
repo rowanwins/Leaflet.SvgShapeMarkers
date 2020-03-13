@@ -1,6 +1,9 @@
 # Leaflet.SvgShapeMarkers
 Additional SVG marker types for leaflet.js such as triangle, diamond and square. Check out the [demo](http://rowanwins.github.io/Leaflet.SvgShapeMarkers/example/).
 
+*Note*: Currently only works when `preferCanvas` isn't set to `true`.
+
+
 ### Installing
 Either  downloading this repo or install from npm `npm install leaflet-svg-shape-markers`
 
