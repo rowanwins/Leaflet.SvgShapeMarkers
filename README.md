@@ -49,6 +49,9 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 * triangle (= triangle-up)
 * triangle-up
 * triangle-down
+* arrowhead (= arrowhead-up)
+* arrowhead-up
+* arrowhead-down
 * circle
 * x
 
