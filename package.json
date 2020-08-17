@@ -1,6 +1,6 @@
 {
   "name": "leaflet-svg-shape-markers",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Additional SVG markers for use in leaflet.js",
   "main": "index.js",
   "scripts": {
