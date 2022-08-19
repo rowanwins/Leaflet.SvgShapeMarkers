@@ -1,38 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Leaflet SVG markers</title>
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2.rc.2/leaflet.css"/>
-
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2.rc.2/leaflet.js"></script>
-
-	<script type="text/javascript" src="../dist/leaflet-svg-markers.min.js"></script>
+	<title>Leaflet.SvgShapeMarkers</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<script type="text/javascript" src="../dist/leaflet-svg-shape-markers.js"></script>
+	<script type="text/javascript" src="./data.js"></script>
+	<style>
+		html {
+			background: #222222; 
+			padding: 40px 200px;
+			font-family: 'Arial';
+		}
+		h2,p {
+			color: white;
+		}
+		.changeRadiusButton{
+			padding:15px 30px; 
+			background-color: #47a230;
+			text-decoration: none;
+			font-weight: 900; 
+			color: white; 
+			text-transform:uppercase; 
+			transition: background-color .5s;
+			border:none;
+		}
+		.changeRadiusButton:hover {
+			background-color: #1d7806;
+			cursor: pointer;
+		}
+	</style>
 
 </head>
 <body>
-	<div id="map" style="width: 800px; height: 600px; border: 1px solid #ccc"></div>
-
+	<h2>Leaflet.SvgShapeMarkers</h2>
+	<div id="map" style="width: 100%; height: 400px;""></div>
+	<br><br>
+	<button onclick="changeXRadius()" class="changeRadiusButton">Change radius of x marker</button>
 	<script>
 
 		var map = L.map('map', {
 			center: [51.505, -0.09],
-			zoom: 13
+			zoom: 1
 		});
-		var tilelayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-			maxZoom: 18
+
+		var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+			subdomains: 'abcd',
+			maxZoom: 19
 		}).addTo(map);
 
-		var square = L.shapeMarker([51.505, -0.09], {
+		function randomIntFromInterval(min, max) {
+  		return Math.floor(Math.random() * (max - min + 1) + min)
+		}
+
+		var myLayer = L.geoJson(sampleGeoJSON, {
+			pointToLayer: function (feature, latlng) {
+				const r = randomIntFromInterval(0, 360)
+				return L.shapeMarker(latlng, {
+					shape: "square",
+					rotation: r
+				})
+			}
+		}). addTo(map);
+
+		var square = L.shapeMarker([-20, 40.06], {
 			fillColor: "black",
 			color: "black",
-			shape: "diamond",
-			size: 20
+			shape: "star-7",
+			radius: 20
 		}).addTo(map);
 
-		var marker = L.marker([51.505, -0.09]).addTo(map);
 
+		var triangle = L.shapeMarker([51.51, -100], {
+			fillColor: "red",
+			fillOpacity: 0.9,
+			color: "#cccccc",
+			shape: "triangle",
+			radius: 10
+		}).addTo(map);
+
+		var x = L.shapeMarker([51.50, -0.06], {
+			fillOpacity: 0.1,
+			color: "red",
+			shape: "x",
+			radius: 100		
+		}).addTo(map);
+		
+		function changeXRadius(){
+			x.setRadius(Math.floor(Math.random() * 100) + 1 )
+		}
 	</script>
 </body>
 </html>

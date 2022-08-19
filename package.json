@@ -1,15 +1,25 @@
 {
-  "name": "leaflet-svg-markers",
-  "version": "1.0.0",
+  "name": "leaflet-svg-shape-markers",
+  "version": "1.4.0",
   "description": "Additional SVG markers for use in leaflet.js",
-  "main": "index.js",
-  "scripts": {
-    "build": "node build.js"
+  "browser": "dist/leaflet-svg-shape-markers.min.js",
+  "main": "dist/leaflet-svg-shape-markers.js",
+  "module": "dist/leaflet-svg-shape-markers.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/leaflet-svg-shape-markers.js",
+      "require": "./dist/leaflet-svg-shape-markers.js"
+    }
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "Rowan Winsemius",
+  "license": "MIT",
   "devDependencies": {
-    "concatenate-files": "^0.1.1",
-    "minifier": "^0.7.1"
+    "@rollup/plugin-multi-entry": "^4.1.0",
+    "rollup": "^2.78.0",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }
