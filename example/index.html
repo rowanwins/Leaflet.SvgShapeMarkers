@@ -4,7 +4,7 @@
 	<title>Leaflet.SvgShapeMarkers</title>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-	<script type="text/javascript" src="../dist/leaflet-svg-shape-markers.min.js"></script>
+	<script type="text/javascript" src="../dist/leaflet-svg-shape-markers.js"></script>
 	<script type="text/javascript" src="./data.js"></script>
 	<style>
 		html {
@@ -50,11 +50,16 @@
 			maxZoom: 19
 		}).addTo(map);
 
+		function randomIntFromInterval(min, max) {
+  		return Math.floor(Math.random() * (max - min + 1) + min)
+		}
 
 		var myLayer = L.geoJson(sampleGeoJSON, {
 			pointToLayer: function (feature, latlng) {
+				const r = randomIntFromInterval(0, 360)
 				return L.shapeMarker(latlng, {
-					shape: "square"
+					shape: "square",
+					rotation: r
 				})
 			}
 		}). addTo(map);
@@ -62,7 +67,7 @@
 		var square = L.shapeMarker([-20, 40.06], {
 			fillColor: "black",
 			color: "black",
-			shape: "diamond",
+			shape: "star-7",
 			radius: 20
 		}).addTo(map);
 

@@ -5,12 +5,22 @@ Additional SVG marker types for leaflet.js such as triangle, diamond and square.
 
 
 ### Installing
-Either  downloading this repo or install from npm `npm install leaflet-svg-shape-markers`
+Either downloading this repo or install from npm 
+````
+npm install leaflet-svg-shape-markers
+````
 
 ### Usage
 **Step 1.** Include the required js in your document 
 
-```html
+```
+    # With requirejs
+		require('leaflet-svg-shape-markers')
+
+		# Using ES6
+		import 'leaflet-svg-shape-markers'
+
+		# Via a html script
    	<script src="leaflet-svg-shape-markers/dist/leaflet-svg-shape-markers.min.js"></script>
 ```
 
@@ -28,8 +38,9 @@ You can pass a number of options to the plugin to control various settings.
 
 | Option        | Type         | Default      | Description   |
 | ------------- |--------------|--------------|---------------|
-| shape | string | "triangle" | A valid shape, one of "triangle" or "square" or "diamond" or "x"|
+| shape | string | "triangle" | A valid shape, see list below |
 | radius | number | 20 | The size of the svg marker in pixels |
+| rotation | number | 0 | The rotation of the svg marker, between 0 and 360 |
 
 L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#path) so any options that you can pass (such as color or fillOpacity) are also valid.
 
@@ -53,6 +64,7 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 * arrowhead-up
 * arrowhead-down
 * circle
+* star-{number-points}
 * x
 
 ### Additional methods
@@ -62,8 +74,10 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 | setLatLng | this | Sets the position of a marker to a new location.|
 | getLatLng | LatLng | Returns the current geographical position of the marker.|
 | setStyle | this | Changes the appearance of a Path based on the options in the Path options object.|
-| getRadius | this | Returns the current radius of the marker.|
+| getRadius | number | Returns the current radius of the marker.|
 | setRadius | this | Sets the radius of a marker. Units are in pixels.|
+| getRotation | number | Returns the current rotation of the marker.|
+| setRotation | this | Sets the rotation of a marker.|
 
 ``` js
 	diamond.setRadius(10);
