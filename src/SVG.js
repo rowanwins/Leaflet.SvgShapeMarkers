@@ -69,5 +69,27 @@ L.SVG.include({
 				'L' + (p.x + s) + ',' + (p.y - s);
 			this._setPath(layer, d);
 		}
+		if (shape.startsWith("polygon")) {
+			var shapesplit = shape.split(/[^0-9a-z]/gi, 2);
+			var shapeint = parseInt(shapesplit[1]);
+			if (shapesplit[0] === "polygon" && !isNaN(shapeint) && shapeint > 2) {
+				var v = shapeint;
+			} else {
+				var v = 5;
+			}
+			var angle = Math.PI; // Starting angle, top apex
+			var c = [];
+			for (var i = 0; i < v; i++) {
+				c.push([
+					(p.x + s * Math.sin(angle))
+					+ ',' +
+					(p.y + s * Math.cos(angle))
+				]);
+				angle += (2 * Math.PI / v);
+			}
+			var d = 'M' + c.join('L') + 'Z';
+
+			this._setPath(layer, d);
+		}
 	}
 });
