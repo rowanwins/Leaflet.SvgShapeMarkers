@@ -14,23 +14,23 @@ npm install leaflet-svg-shape-markers
 **Step 1.** Include the required js in your document 
 
 ```
-    # With requirejs
-		require('leaflet-svg-shape-markers')
+# With requirejs
+require('leaflet-svg-shape-markers')
 
-		# Using ES6
-		import 'leaflet-svg-shape-markers'
+# Using ES6
+import 'leaflet-svg-shape-markers'
 
-		# Via a html script
-   	<script src="leaflet-svg-shape-markers/dist/leaflet-svg-shape-markers.min.js"></script>
+# Via a html script
+<script src="leaflet-svg-shape-markers/dist/leaflet-svg-shape-markers.min.js"></script>
 ```
 
 **Step 2.** Add a point to your map using the `shapeMarker` function
 
 ``` js
-	var square = L.shapeMarker([51.505, -0.09], {
-		shape: "square",
-		radius: 20
-	}).addTo(map);
+var square = L.shapeMarker([51.505, -0.09], {
+	shape: "square",
+	radius: 20
+}).addTo(map);
 ```
 
 **Step 3.**
@@ -45,12 +45,12 @@ You can pass a number of options to the plugin to control various settings.
 L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#path) so any options that you can pass (such as color or fillOpacity) are also valid.
 
 ``` js
-	var diamond = L.shapeMarker([51.505, -0.09], {
-		fillColor: "#cccccc",
-		color: "black",
-		shape: "diamond",
-		radius: 200
-	}).addTo(map);
+var diamond = L.shapeMarker([51.505, -0.09], {
+	fillColor: "#cccccc",
+	color: "black",
+	shape: "diamond",
+	radius: 200
+}).addTo(map);
 ```
 
 ### Available shapes
@@ -64,6 +64,7 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 * arrowhead-up
 * arrowhead-down
 * circle
+* polygon-{number-points}
 * star-{number-points}
 * x
 
@@ -80,7 +81,7 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 | setRotation | this | Sets the rotation of a marker.|
 
 ``` js
-	diamond.setRadius(10);
+diamond.setRadius(10);
 ```
 
 ### Acknowledgements

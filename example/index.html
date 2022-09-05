@@ -12,25 +12,24 @@
 			padding: 40px 200px;
 			font-family: 'Arial';
 		}
-		h2,p {
+		h2, p {
 			color: white;
 		}
 		.changeRadiusButton{
-			padding:15px 30px; 
+			padding: 15px 30px; 
 			background-color: #47a230;
 			text-decoration: none;
 			font-weight: 900; 
 			color: white; 
-			text-transform:uppercase; 
+			text-transform: uppercase; 
 			transition: background-color .5s;
-			border:none;
+			border: none;
 		}
 		.changeRadiusButton:hover {
 			background-color: #1d7806;
 			cursor: pointer;
 		}
 	</style>
-
 </head>
 <body>
 	<h2>Leaflet.SvgShapeMarkers</h2>
@@ -51,16 +50,16 @@
 		}).addTo(map);
 
 		function randomIntFromInterval(min, max) {
-  		return Math.floor(Math.random() * (max - min + 1) + min)
+  			return Math.floor(Math.random() * (max - min + 1) + min);
 		}
 
 		var myLayer = L.geoJson(sampleGeoJSON, {
 			pointToLayer: function (feature, latlng) {
-				const r = randomIntFromInterval(0, 360)
+				const r = randomIntFromInterval(0, 360);
 				return L.shapeMarker(latlng, {
 					shape: "square",
 					rotation: r
-				})
+				});
 			}
 		}). addTo(map);
 
@@ -70,7 +69,6 @@
 			shape: "star-7",
 			radius: 20
 		}).addTo(map);
-
 
 		var triangle = L.shapeMarker([51.51, -100], {
 			fillColor: "red",
@@ -86,9 +84,17 @@
 			shape: "x",
 			radius: 100		
 		}).addTo(map);
+				  
+		var pentagon = L.shapeMarker([-6, -62], {
+			fillColor: "green",
+			fillOpacity: 0.9,
+			color: "gold",
+			shape: "polygon-5",
+			radius: 20
+		}).addto(map);
 		
 		function changeXRadius(){
-			x.setRadius(Math.floor(Math.random() * 100) + 1 )
+			x.setRadius(Math.floor(Math.random() * 100) + 1);
 		}
 	</script>
 </body>
