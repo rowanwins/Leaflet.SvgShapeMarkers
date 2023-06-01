@@ -64,6 +64,7 @@ L.shapeMarker also extends the [path class](http://leafletjs.com/reference.html#
 * arrowhead-up
 * arrowhead-down
 * circle
+* cross
 * star-{number-points}
 * x
 

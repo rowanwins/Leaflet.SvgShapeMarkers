@@ -35,6 +35,23 @@ L.SVG.include({
 		if (shape === "circle") {
 			this._updateCircle(layer);
 		}
+		if (shape === "cross") {
+			var d =
+				"M" + (p.x-s) + "," + (p.y-(s/3)) +
+				"L" + (p.x-(s/3)) + "," + (p.y-(s/3)) +
+				"L" + (p.x-(s/3)) + "," + (p.y-s) +
+				"L" + (p.x+(s/3)) + "," + (p.y-s) +
+				"L" + (p.x+(s/3)) + "," + (p.y-(s/3)) +
+				"L" + (p.x+s) + "," + (p.y-(s/3)) +
+				"L" + (p.x+s) + "," + (p.y+(s/3)) +
+				"L" + (p.x+(s/3)) + "," + (p.y+(s/3)) +
+				"L" + (p.x+(s/3)) + "," + (p.y+s) +
+				"L" + (p.x-(s/3)) + "," + (p.y+s) +
+				"L" + (p.x-(s/3)) + "," + (p.y+(s/3)) +
+				"L" + (p.x-s) + "," + (p.y+(s/3)) +
+				"Z";
+			this._setPath(layer, d);
+		}
 		if (shape.startsWith("star")) {
 			var shapesplit = shape.split(/[^0-9a-z]/gi, 2);
 			var shapeint = parseInt(shapesplit[1]);
